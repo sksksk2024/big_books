@@ -61,7 +61,7 @@ class BooksController < ApplicationController
     end
   end
 
-  def correct_use
+  def correct_user
     @book = current_user.books.find_by(id: params[:id])
     redirect_to books_path, notice: "Not Authorized To Edit This Book" if @book.nil? 
   end
