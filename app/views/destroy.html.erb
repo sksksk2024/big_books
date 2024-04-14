@@ -1,0 +1,10 @@
+<!-- app/views/sessions/destroy.html.erb -->
+
+<h1>Sign Out</h1>
+<p>Are you sure you want to sign out?</p>
+
+<!-- Sign-out form -->
+<form id="sign-out-form" action="/users/sign_out" method="post">
+  <%= hidden_field_tag :_method, :delete %>
+  <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
+</form>

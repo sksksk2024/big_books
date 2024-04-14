@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get 'home/about'
   #root 'home#index'
   root 'books#index'
+  delete '/users/sign_out', to: 'sessions#destroy'
 end
