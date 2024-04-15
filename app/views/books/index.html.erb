@@ -6,6 +6,8 @@
         <th>Book name</th>
         <th>Author Name</th>
         <th>Price</th>
+        <th>Pages</th>
+        <th>Published</th>
         <th> </th>
       </tr>
     </thead>
@@ -19,7 +21,8 @@
         <%= link_to book.author_first_name + ' ' + book.author_last_name, book %>
       </td>
       <td><%= book.price %></td>
-
+      <td><%= book.pages %></td>
+      <td><%= book.publication_date %></td>
       <td><%= button_to 'Delete', book, method: :delete, data: 
       { confirm: 'Are you sure?'}, class:"btn btn-outline-danger
       btn-sm" %></td>
