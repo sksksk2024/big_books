@@ -8,6 +8,20 @@ AllCops:
     - 'config/**/*'
     - 'bin/*'
     - 'config.ru'
+    - 'app/controllers/**/*'
+    - 'app/helpers/**/*'
+    - 'app/models/**/*'
+
+Metrics:
+  Enable: false
+
+Layout/CommentIndentation:
+  Enable: false
+
+Naming/MethodName:
+  Enable: false
+  Include:
+    - 'lib/**/*'
 
 Style/Documentation:
   Enable: false
