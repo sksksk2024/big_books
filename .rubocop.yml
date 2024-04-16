@@ -1,1 +1,22 @@
-inherit_from: .rubocop_todo.yml
+require:
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.0.1
+  Exclude:
+    - '**/db/**/*'
+    - 'config/**/*'
+    - 'bin/*'
+    - 'config.ru'
+
+Style/Documentation:
+  Enable: false
+
+Bundler/OrderedGems:
+  Enable: false
+
+Style/EmptyMethod:
+  Enable: false
+
+Lint/UnusedMethodArgument:
+  Enable: false
