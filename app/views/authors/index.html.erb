@@ -1,0 +1,36 @@
+<% if user_signed_in? %>
+
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Author Name</th>
+        <th>Popularity Score</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% Author.order(popularity_score: :desc).each do |author| %>
+        <tr>
+          <td>
+            <%= author.first_name %> 
+            <%= author.last_name %>
+          </td>
+          <td><%= author.popularity_score %></td>
+          <td>
+            <%= button_to 'Delete', author, method: :delete, data: { confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm" %>
+            <%= link_to "Update", edit_author_path(author), class:"btn btn-secondary" %>
+
+            </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to "New", new_author_path, class:"btn btn-secondary" %>
+<% else %>
+  <h1>No author here</h1>
+  yee..
+<% end %>

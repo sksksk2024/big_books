@@ -3,8 +3,12 @@
     <%=@book.book_name%>
     </h1>
   <p class="lead">
-    <%= @book.author_first_name %>
-    <%= @book.author_last_name %>
+    <% if @book.author %>
+      <%= @book.author.first_name %>
+      <%= @book.author.last_name %>
+    <% else %>
+      Author not specified
+    <% end %>
   </p>
   <hr class>
   <p>Pret: <%= @book.price %> lei</p>

@@ -2,10 +2,17 @@
 
 Rails.application.routes.draw do
   devise_for :users
+
+  resources :books do
+    resources :authors, only: [:create, :update, :edit] # Include :edit action for editing authors
+  end
+
+  resources :authors
   resources :books
-  # get 'home/index'
+
   get 'home/about'
-  # root 'home#index'
   root 'books#index'
   delete '/users/sign_out', to: 'sessions#destroy'
 end
+
+

@@ -1,0 +1,29 @@
+<%= form_with(model: author, local: true) do |form| %>
+  <% if author.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(author.errors.count, "error") %> prohibited this author from being saved:</h2>
+
+      <ul>
+        <% author.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+  <% form.label :author_id, "Author", style: "display: block" %>
+  <%= form.collection_select(:author_id, Author.all, :id, :full_name, { prompt: "Select Author" }, { class: "form-control" }) %>
+  </div>
+
+  <div class="field form-group">
+    <% form.label :popularity_score, style: "display: block" %>
+    <%= form.number_field :popularity_score, class:"form-control",
+    placeholder:"Popularity Score" %>
+  </div>
+
+  <br/>
+  <div class="actions">
+    <%= form.submit class: 'btn btn-secondary' %>
+  </div>
+<% end %>
