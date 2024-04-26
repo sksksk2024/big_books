@@ -1,11 +1,17 @@
-<h1>Editing Author</h1>
+<h1>Editing <%= @author.first_name %></h1>
 
-<%= form_with(model: author, url: author_path(author), method: :patch, remote: true) do |form| %>
+<%= form_with(model: @author, url: author_path, method: :patch, remote: true) do |form| %>
   <!-- Form fields for author attributes -->
+
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <%= form.label :first_name %>
+  <%= form.text_field :first_name %>
+</div>
+
+<div class="field">
+  <%= form.label :last_name %>
+  <%= form.text_field :last_name %>
+</div>
 
   <!-- Add more form fields for additional attributes if needed -->
 
@@ -17,7 +23,7 @@
 <br/>
 
 <div>
-  <%= link_to "Show", author, class: "btn btn-secondary" %> 
-  <%= link_to 'Delete', author, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+  <%= link_to "Show", @author, class: "btn btn-secondary" %> 
+  <%= link_to 'Delete', @author, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger" %>
   <%= link_to "Back", authors_path, class: "btn btn-dark" %>
 </div>

@@ -1,17 +1,15 @@
 <h1>New Author</h1>
 
-<%= render "form", author: @author %>
-
-<%= form_with(model: author, url: authors_path, remote: true) do |form| %>
+<%= form_with(model: @author, url: authors_path, method: :post, remote: true) do |form| %>
   <!-- Form fields for author attributes -->
   <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
+  <%= form.label :name, "Author Name" %>
+  <%= form.text_field :name, value: "#{@author.first_name} #{@author.last_name}" %>
   </div>
 
   <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
+    <%= form.label :popularity_score %>
+    <%= form.number_field :popularity_score %>
   </div>
 
   <!-- Add more form fields as needed -->
