@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :books do
-    resources :authors, only: [:create, :update, :edit] # Include :edit action for editing authors
+    resources :authors, only: [:new, :create, :update, :edit] # Include :edit action for editing authors
   end
 
   resources :authors
