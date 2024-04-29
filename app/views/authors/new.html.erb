@@ -1,23 +1,24 @@
 <h1>New Author</h1>
 
-<form action="/authors" method="post">
+<%= form_with(model: @author, local: true) do |form| %>
   <div class="field">
-    <label for="author_name">Name:</label>
-    <input type="text" id="author_name" name="author[name]">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: "author_name" %>
   </div>
 
   <div class="field">
-    <label for="author_popularity_score">Popularity Score:</label>
-    <input type="number" id="author_popularity_score" name="author[popularity_score]">
+    <%= form.label :popularity_score %>
+    <%= form.number_field :popularity_score, id: "author_popularity_score" %>
   </div>
 
   <div class="actions">
-    <input type="submit" value="Create Author">
+    <%= form.submit "Create Author", class: "btn btn-primary" %>
   </div>
-</form>
+<% end %>
 
 <br>
 
 <div>
-  <%= link_to "Back", authors_path %>
+  <%= link_to "Back", authors_path, class: "btn btn-secondary" %>
 </div>
+

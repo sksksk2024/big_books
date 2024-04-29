@@ -7,12 +7,14 @@ Rails.application.routes.draw do
     resources :authors, only: [:new, :create, :update, :edit] # Include :edit action for editing authors
   end
 
+  # Remove duplicate resources :authors and resources :books
   resources :authors
-  resources :books
+  # resources :books  # Remove this line
 
   get 'home/about'
   root 'books#index'
   delete '/users/sign_out', to: 'sessions#destroy'
 end
+
 
 

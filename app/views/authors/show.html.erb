@@ -1,6 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @author %>
+<dl>
+  <dt>Name:</dt>
+  <dd><%= @author.full_name %></dd>
+  <dt>Popularity Score:</dt>
+  <dd><%= @author.popularity_score %></dd>
+</dl>
 
 <div>
   <%= link_to "Edit", edit_author_path(@author) %> |
