@@ -34,7 +34,8 @@ class AuthorsController < ApplicationController
   def create
     # Create a new author with the provided parameters
     @author = Author.new(author_params)
-  
+    @author.user = current_user
+
     respond_to do |format|
       if @author.save
         # If author is successfully created, redirect to the new author's show page
@@ -47,10 +48,6 @@ class AuthorsController < ApplicationController
       end
     end
   end
-  
-  
-  
-  
 
   # PATCH/PUT /authors/1 or /authors/1.json
   def update
@@ -80,7 +77,7 @@ class AuthorsController < ApplicationController
   def set_author
     @author = @book ? @book.authors.find(params[:id]) : Author.find(params[:id])
   end
-  
+
 
   def set_book
     @book = Book.find_by(id: params[:book_id]) if params[:book_id].present?
@@ -88,6 +85,6 @@ class AuthorsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def author_params
-    params.require(:author).permit(:popularity_score, :first_name, :last_name)
+    params.require(:author).permit(:popularity_score, :name)
   end
 end
