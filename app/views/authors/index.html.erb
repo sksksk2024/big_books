@@ -10,19 +10,19 @@
     </thead>
 
     <tbody>
-  <% Author.order(popularity_score: :desc).each do |author| %>
-    <tr>
-      <td>
-        <%= author.full_name %>
-      </td>
-      <td><%= author.popularity_score %></td>
-      <td>
-        <%= button_to 'Delete', author, method: :delete, data: { confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm" %>
-        <%= link_to "Update", edit_author_path(author), class:"btn btn-secondary" %>
-      </td>
-    </tr>
-  <% end %>
-</tbody>
+      <% @authors.each do |author| %>
+        <tr>
+          <td>
+            <%= "#{author.first_name} #{author.last_name}" %>
+          </td>
+          <td><%= author.popularity_score %></td>
+          <td>
+            <%= button_to 'Delete', author, method: :delete, data: { confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm" %>
+            <%= link_to "Update", edit_author_path(author), class:"btn btn-secondary" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 
   <br>
