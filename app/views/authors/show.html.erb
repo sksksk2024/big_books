@@ -1,16 +1,30 @@
-<p style="color: green"><%= notice %></p>
 
-<dl>
-  <dt>Name:</dt>
-  <dd><%= @author.full_name %></dd>
-  <dt>Popularity Score:</dt>
-  <dd><%= @author.popularity_score %></dd>
-</dl>
+<style>
+  /* Custom styles for the jumbotron */
+  .custom-jumbotron {
+    background-color: pink; /* Change this color to your desired background color */
+    color: #33; /* Change this color to your desired text color */
+  }
+  
+  .thick-hr {
+    border: 0;
+    height: 30px; /* Adjust the thickness as needed */
+    background-color: #f5f5f5; /* Adjust color as needed */
+    margin: 15px 0; /* Adjust margin as needed */
+  }
+</style>
 
-<div>
-  <%= link_to "Edit", edit_author_path(@author) %> |
-  <%= link_to "Back", authors_path %>
-
-  <%= button_to "Destroy", @author, method: :delete %>
+<div class="jumbotron custom-jumbotron">
+  <h1 class="display-4"><%= @author.full_name %></h1>
+  <p class="lead"><%= @author.popularity_score %></p>
+  
+  <hr class="thick-hr">
+  
+  <p>Bibliografie</p>
+  
+  <div>
+    <%= link_to "Edit", edit_author_path(@author), class:"btn btn-secondary" %> 
+    <%= link_to "Back", authors_path, class:"btn btn-secondary" %>
+    <%= button_to "Destroy", author_path(@author), method: :delete, class:"btn btn-danger" %>
+  </div>
 </div>
-#descriere autor

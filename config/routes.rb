@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users
+  #binding.pry
+  devise_for :user
 
   resources :books do
     resources :authors, only: [:new, :create, :update, :edit] # Include :edit action for editing authors
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
 
   get 'home/about'
   root 'books#index'
-  delete '/users/sign_out', to: 'sessions#destroy'
+  #delete '/users/sign_out', to: 'sessions#destroy'
 end
 
 

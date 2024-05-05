@@ -1,19 +1,11 @@
-<h1>Editing <%= @author.first_name %></h1>
+<h1>Editing <%= @author.full_name %></h1>
+
 
 <%= form_with(model: @author, url: author_path, method: :patch, remote: true) do |form| %>
   <!-- Form fields for author attributes -->
 
-  <div class="field">
-  <%= form.label :first_name %>
-  <%= form.text_field :first_name %>
-  <input type="text" name="author[first_name]">
-</div>
-
-<div class="field">
-  <%= form.label :last_name %>
-  <%= form.text_field :last_name %>
-  <input type="text" name="author[last_name]">
-</div>
+  <%= form.text_field :name, name: 'author[name]' %>
+  <%= form.number_field :popularity_score, name: 'author[popularity_score]' %>
 
   <!-- Add more form fields for additional attributes if needed -->
 

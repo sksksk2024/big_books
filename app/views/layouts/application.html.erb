@@ -19,12 +19,10 @@
   <%= render 'home/header' %>
   <div class="container">
     <br/>
+  
 
-    <!-- Flash messages rendering -->
-    <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>">
-        <%= value %>
-      </div>
+    <% if notice%>
+      <%= render 'layouts/alerts' %>
     <% end %>
     
     <%= yield %>

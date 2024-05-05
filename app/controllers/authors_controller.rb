@@ -20,6 +20,7 @@ class AuthorsController < ApplicationController
 
   # GET /authors/1/edit
   def edit
+    @author = Author.find(params[:id])
   end
 
   # POST /books/:book_id/authors or /authors.json
@@ -41,6 +42,7 @@ class AuthorsController < ApplicationController
 
   # PATCH/PUT /authors/1 or /authors/1.json
   def update
+    @author = Author.find(params[:id])
     respond_to do |format|
       if @author.update(author_params)
         format.html { redirect_to author_path(@author), notice: "Author was successfully updated." }
@@ -54,6 +56,7 @@ class AuthorsController < ApplicationController
 
   # DELETE /authors/1 or /authors/1.json
   def destroy
+    @author = Author.find(params[:id])
     @author.destroy
     respond_to do |format|
       format.html { redirect_to authors_url, notice: "Author was successfully destroyed." }

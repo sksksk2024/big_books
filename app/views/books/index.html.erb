@@ -15,7 +15,7 @@
     <% @books.each do |book| %>
       <% if book.user == current_user %>
      <tr>
-      <td><%= book.book_name %></td>
+      <td><%= link_to book.book_name, book %></td>
       <td><%= book.price %></td>
       <td><%= book.page_number %></td>
       <td><%= book.publication_date.inspect %></td> <!-- Debugging output -->

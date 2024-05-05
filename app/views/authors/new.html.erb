@@ -2,13 +2,8 @@
 
 <%= form_with(model: @author, local: true) do |form| %>
   <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name, id: "author_first_name" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name, id: "author_last_name" %>
+    <%= form.label :Name %>
+    <%= form.text_field :name, id: "author_name" %>
   </div>
 
   <div class="field">
