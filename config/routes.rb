@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   # resources :books  # Remove this line
 
   get 'home/about'
+  get 'top_authors/index'
+  
   root 'books#index'
   #delete '/users/sign_out', to: 'sessions#destroy'
 end

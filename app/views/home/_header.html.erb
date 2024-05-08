@@ -18,13 +18,10 @@
         </li>
 
         <li class="nav-item">
-  <%= form_tag destroy_user_session_path, method: :delete, class: "nav-link", style: "display: inline;" do %>
-    <%= button_tag "Sign out", type: "submit", class: "btn btn-dark" %>
-  <% end %>
-</li>
-
-
-
+          <%= form_tag destroy_user_session_path, method: :delete, class: "nav-link", style: "display: inline;" do %>
+            <%= button_tag "Sign out", type: "submit", class: "btn btn-dark" %>
+          <% end %>
+        </li>
 
         <li class="nav-item">
           <%= link_to 'Edit Profile', edit_user_registration_path, class: "nav-link" %>
@@ -32,6 +29,10 @@
 
         <li class="nav-item">
           <%= link_to 'Authors', authors_path, class:"nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to 'Top Authors', top_authors_index_path, class:"nav-link" %>
         </li>
         
       <% else %>
