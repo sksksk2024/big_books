@@ -7,8 +7,15 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    @books = Book.all
+    @q = Book.ransack(params[:q])
+    @books = @q.result.paginate(page: params[:page], per_page: 10)
+
+    respond_to do |format|
+      format.html
+      format.js # This will respond to AJAX requests
+    end
   end
+  
 
   # GET /books/1 or /books/1.json
   def show; end

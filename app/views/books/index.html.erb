@@ -1,9 +1,19 @@
 <% if user_signed_in? %>
 
+<%= form_tag books_path, method: :get, remote: true, data: { controller: "book-search", action: "ajax->book-search#search" } do %>
+  <%= text_field_tag :q, params[:q], id: 'book_search', placeholder: 'Search by title...', data: { target: "book-search.searchInput" } %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
+<div id="search_results" data-book-search-target="results">
+  <%= render partial: 'books', locals: { books: @books } %>
+</div>
+
   <table class="table table-striped table-bordered table-hover">
     <thead class="thead-dark">
       <tr>
         <th>Book name</th>
+        <th>Author</th>
         <th>Price</th>
         <th>Pages</th>
         <th>Published</th>
@@ -16,6 +26,7 @@
       <% if book.user == current_user %>
      <tr>
       <td><%= link_to book.book_name, book %></td>
+      <td><%= "#{book.author.first_name} #{book.author.last_name}" %></td>
       <td><%= book.price %></td>
       <td><%= book.page_number %></td>
       <td><%= book.publication_date.inspect %></td> <!-- Debugging output -->
@@ -27,6 +38,8 @@
     <% end %>
   </tbody>
   </table>
+
+  <%= will_paginate @books %>
 
   <br>
 

@@ -8,6 +8,10 @@ class Author < ApplicationRecord
   validates :first_name, :last_name, presence: true
   validates :popularity_score, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 10 }, allow_nil: true
 
+  def book_count
+    books.count
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
