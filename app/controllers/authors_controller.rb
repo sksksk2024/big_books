@@ -3,11 +3,22 @@ class AuthorsController < ApplicationController
 
   # GET /authors or /authors.json
   def index
-    @q = Author.ransack(params[:q])
-    @authors = @q.result
-                  .order(popularity_score: :desc)
-                  .paginate(page: params[:page], per_page: 10)
+    # Initialize the authors query
+    @authors = Author.all
+  
+    # If there are search parameters, filter the authors
+    if params[:q].present?
+      search_term = "%#{params[:q]}%"
+      @authors = @authors.where('first_name LIKE ? OR biography LIKE ?', search_term, search_term)
+    end
+  
+    # Order by popularity_score in descending order
+    @authors = authors.order(popularity_score: :desc)
+  
+    # Paginate the results
+    @authors = authors.paginate(page: params[:page], per_page: 10)
   end
+  
   
 
   # GET /authors/1 or /authors/1.json

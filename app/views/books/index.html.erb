@@ -1,13 +1,8 @@
 <% if user_signed_in? %>
-
-<%= form_tag books_path, method: :get, remote: true, data: { controller: "book-search", action: "ajax->book-search#search" } do %>
-  <%= text_field_tag :q, params[:q], id: 'book_search', placeholder: 'Search by title...', data: { target: "book-search.searchInput" } %>
+<%= form_tag books_path, method: :get do %>
+  <%= text_field_tag :q, params[:q], id: 'book_search', placeholder: 'Search by book_name...' %>
   <%= submit_tag "Search", class: "btn btn-primary" %>
 <% end %>
-
-<div id="search_results" data-book-search-target="results">
-  <%= render partial: 'books', locals: { books: @books } %>
-</div>
 
   <table class="table table-striped table-bordered table-hover">
     <thead class="thead-dark">
@@ -21,29 +16,28 @@
       </tr>
     </thead>
 
-  <tbody>
-    <% @books.each do |book| %>
-      <% if book.user == current_user %>
-     <tr>
-      <td><%= link_to book.book_name, book %></td>
-      <td><%= "#{book.author.first_name} #{book.author.last_name}" %></td>
-      <td><%= book.price %></td>
-      <td><%= book.page_number %></td>
-      <td><%= book.publication_date.inspect %></td> <!-- Debugging output -->
-      <td><%= button_to 'Delete', book, method: :delete, data: 
-      { confirm: 'Are you sure?'}, class:"btn btn-outline-danger
-      btn-sm" %></td>
-    </tr>
-    <% end %>
-    <% end %>
-  </tbody>
+    <tbody>
+      <% @books.each do |book| %>
+        <% if book.user == current_user %>
+          <tr>
+            <!-- Efficiently accessing the preloaded associations -->
+            <td><%= link_to book.book_name, book %></td>
+            <td><%= "#{book.author.first_name} #{book.author.last_name}" %></td>
+            <td><%= book.price %></td>
+            <td><%= book.page_number %></td>
+            <td><%= book.publication_date.strftime("%B %d, %Y") %></td> <!-- Date formatting -->
+            <td><%= button_to 'Delete', book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
   </table>
 
-  <%= will_paginate @books %>
+  <%= will_paginate @books, previous_label: ' ', next_label: ' ' %>
 
   <br>
 
-  <%= link_to "New", new_book_path, class:"btn btn-secondary" %>
+  <%= link_to "New", new_book_path, class: "btn btn-secondary" %>
 <% else %>
   <h1>Hello World</h1>
   Oh ya!

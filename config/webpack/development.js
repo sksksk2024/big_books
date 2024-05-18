@@ -1,6 +1,5 @@
-// config/webpack/development.js
-const environment = require('./environment');
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
-module.exports = {
-  // Your development configurations here
-};
+const environment = require('./environment')
+
+module.exports = environment.toWebpackConfig()

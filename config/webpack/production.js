@@ -1,6 +1,5 @@
-// config/webpack/production.js
-const environment = require('./environment');
+process.env.NODE_ENV = process.env.NODE_ENV || 'production'
 
-module.exports = {
-  // Your production configurations here
-};
+const environment = require('./environment')
+
+module.exports = environment.toWebpackConfig()
