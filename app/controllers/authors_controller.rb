@@ -13,10 +13,10 @@ class AuthorsController < ApplicationController
     end
   
     # Order by popularity_score in descending order
-    @authors = authors.order(popularity_score: :desc)
+    @authors = @authors.order(popularity_score: :desc)
   
     # Paginate the results
-    @authors = authors.paginate(page: params[:page], per_page: 10)
+    @authors = @authors.paginate(page: params[:page], per_page: 10)
   end
   
   

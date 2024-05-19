@@ -33,7 +33,7 @@
     </tbody>
   </table>
 
-  <%= will_paginate @books, previous_label: ' ', next_label: ' ' %>
+  <%= will_paginate @books, renderer: CustomLinkRenderer %>
 
   <br>
 
