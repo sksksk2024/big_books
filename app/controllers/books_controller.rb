@@ -8,16 +8,15 @@ class BooksController < ApplicationController
   # GET /books or /books.json
   def index
     @books = Book.all
-    @books = @books.where("book_name = ?", params[:q]) if params[:q].present?    
-    @books = @books.paginate(page: params[:page], per_page: 10)
-  
-
-    # Paginate the results
+    if params[:q].present?
+      query = "%#{params[:q]}%"
+      @books = @books.where("book_name LIKE ?", query)
+    end
     @books = @books.paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
-      format.html
-      format.js # This will respond to AJAX requests
+      format.html # Renders the default index.html.erb
+      format.js   # Renders index.js.erb
     end
   end
   
