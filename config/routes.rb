@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get 'home/about'
   get 'top_authors/index'
   
-  root 'books#index'
+  root 'api/v1/books#index' # Adjusted root path
   #delete '/users/sign_out', to: 'sessions#destroy'
 
   namespace :admin do

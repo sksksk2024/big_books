@@ -17,7 +17,7 @@ class BooksController < ApplicationController
         @books = @books.paginate(page: params[:page], per_page: 10)
 
         respond_to do |format|
-          format.html # Renders the default index.html.erb
+          format.html { render plain: "This is an API controller. HTML format is not supported.", status: :not_acceptable } # Renders the default index.html.erb
           format.js   # Renders index.js.erb
           format.json { render json: @books } # Renders JSON representation of @books
         end
@@ -28,12 +28,20 @@ class BooksController < ApplicationController
       # GET /books/1 or /books/1.json
       def show
         authorize @book
+        respond_to do |format|
+          format.html { render plain: "This is an API controller. HTML format is not supported.", status: :not_acceptable }
+          format.json { render json: @book }
+        end
       end
 
       # GET /books/new
       def new
         # @book = Book.new
         @book = current_user.books.build
+        respond_to do |format|
+          format.html { render plain: "This is an API controller. HTML format is not supported.", status: :not_acceptable }
+          format.json { render json: @book }
+        end
       end
 
       # GET /books/1/edit
