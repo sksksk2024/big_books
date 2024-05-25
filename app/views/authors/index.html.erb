@@ -17,7 +17,9 @@
           </td>
           <td><%= author.popularity_score %></td>
           <td>
-            <%= button_to 'Delete', author, method: :delete, data: { confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm" %>
+            <% if current_user.admin? %>
+              <%= button_to 'Delete', author, method: :delete, data: { confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm" %>
+            <% end %>  
           </td>
         </tr>
       <% end %>

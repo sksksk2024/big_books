@@ -1,0 +1,9 @@
+<%= form_for @user, url: admin_role_path(@user), method: :patch do |f| %>
+  <div class="field form-group">
+    <%= f.label :role %>
+    <%= f.select :role, User.roles.keys.map { |role| [role.humanize, role] } %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Update Role", class: 'btn btn-primary' %>
+  </div>
+<% end %>

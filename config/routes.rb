@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  #binding.pry
-  devise_for :user
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
 
-  resources :books do
-    resources :authors, only: [:new, :create, :update, :edit] # Include :edit action for editing authors
+  namespace :api do
+    namespace :v1 do
+      resources :books do
+        resources :authors, only: [:new, :create, :update, :edit] # Include :edit action for editing authors
+      end
+    end
   end
 
   # Remove duplicate resources :authors and resources :books
@@ -17,6 +22,11 @@ Rails.application.routes.draw do
   
   root 'books#index'
   #delete '/users/sign_out', to: 'sessions#destroy'
+
+  namespace :admin do
+    resources :roles, only: [:edit, :update]
+  end
+
 end
 
 

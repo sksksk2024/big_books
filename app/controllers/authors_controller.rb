@@ -1,6 +1,8 @@
 class AuthorsController < ApplicationController
   before_action :set_book
-
+  before_action :set_author, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_author, only: [:show, :edit, :update, :destroy]
+  
   # GET /authors or /authors.json
   def index
     # Initialize the authors query
@@ -18,31 +20,29 @@ class AuthorsController < ApplicationController
     # Paginate the results
     @authors = @authors.paginate(page: params[:page], per_page: 10)
   end
-  
-  
 
   # GET /authors/1 or /authors/1.json
   def show
-    @author = Author.find(params[:id])
   end
 
   # GET /books/:book_id/authors/new
   def new
     # For nested resources, @book is already set in a before_action
     # If nested under a book, initialize a new author associated with that book
-    @author = Author.new
+    @book = Book.find(params[:book_id]) if params[:book_id]
+    @book.authors.build
   end
 
   # GET /authors/1/edit
   def edit
-    @author = Author.find(params[:id])
   end
 
   # POST /books/:book_id/authors or /authors.json
   def create
     # Create a new author with the provided parameters
     @author = Author.new(author_params)
-    @author.user = current_user
+    @book = Book.find(params[:book_id]) if params[:book_id]
+    @book.authors << author
 
     respond_to do |format|
       if @author.save
@@ -57,7 +57,6 @@ class AuthorsController < ApplicationController
 
   # PATCH/PUT /authors/1 or /authors/1.json
   def update
-    @author = Author.find(params[:id])
     respond_to do |format|
       if @author.update(author_params)
         format.html { redirect_to author_path(@author), notice: "Author was successfully updated." }
@@ -87,7 +86,11 @@ class AuthorsController < ApplicationController
   end
 
   def set_book
-    @book = Book.find_by(id: params[:book_id]) if params[:book_id].present?
+    @book = Book.find(params[:book_id]) if params[:book_id]
+  end
+
+  def authorize_author
+    authorize(@author)
   end
 
   # Only allow a list of trusted parameters through.
