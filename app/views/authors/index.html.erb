@@ -1,5 +1,4 @@
 <% if user_signed_in? %>
-
   <table class="table table-striped table-bordered table-hover">
     <thead class="thead-dark">
       <tr>
@@ -8,28 +7,29 @@
         <th>Actions</th>
       </tr>
     </thead>
-
     <tbody>
-      <% @authors.each do |author| %>
-        <tr>
-          <td>
-            <%= link_to "#{author.first_name} #{author.last_name}", author %>
-          </td>
-          <td><%= author.popularity_score %></td>
-          <td>
-            <% if current_user.admin? %>
-              <%= button_to 'Delete', author, method: :delete, data: { confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm" %>
-            <% end %>  
-          </td>
-        </tr>
+      <% authors_cache_key = 'authors-list-' + @authors.maximum(:updated_at).to_i.to_s %>
+      <% cache(authors_cache_key) do %>
+        <% @authors.each do |author| %>
+          <% cache(author) do %>
+            <tr>
+              <td>
+                <%= link_to "#{author.first_name} #{author.last_name}", author %>
+              </td>
+              <td><%= author.popularity_score %></td>
+              <td>
+                <% if current_user.admin? %>
+                  <%= button_to 'Delete', author, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-outline-danger btn-sm" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
       <% end %>
     </tbody>
   </table>
-    
   <%= will_paginate @authors, renderer: CustomLinkRenderer %>
-
   <br>
-
   <%= link_to "New", new_author_path, class: "btn btn-secondary" %>
 <% else %>
   <h1>No author here</h1>

@@ -93,6 +93,7 @@ GEM
       activesupport
     coderay (1.1.3)
     concurrent-ruby (1.2.3)
+    connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.4)
     debug (1.6.2)
@@ -107,7 +108,7 @@ GEM
     erubi (1.12.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    i18n (1.14.4)
+    i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.1)
       actionpack (>= 6.0.0)
@@ -167,7 +168,7 @@ GEM
     pundit (2.3.2)
       activesupport (>= 3.0.0)
     racc (1.7.3)
-    rack (2.2.9)
+    rack (2.2.4)
     rack-proxy (0.7.7)
       rack
     rack-test (2.1.0)
@@ -204,6 +205,10 @@ GEM
     rake (13.2.1)
     rdoc (6.4.0)
       psych (>= 4.0.0)
+    redis (5.2.0)
+      redis-client (>= 0.22.0)
+    redis-client (0.22.2)
+      connection_pool
     regexp_parser (2.9.0)
     reline (0.5.1)
       io-console (~> 0.5)
@@ -237,6 +242,11 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
+    sidekiq (7.2.4)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.19.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -286,20 +296,25 @@ PLATFORMS
   x64-mingw-ucrt
 
 DEPENDENCIES
+  actionpack (= 7.0.8.1)
   active_model_serializers
   bootsnap
   capybara
   debug
   devise (~> 4.9, >= 4.9.4)
+  i18n (= 1.14.5)
   importmap-rails
   jbuilder
   pry
   puma (~> 5.0)
   pundit
+  rack (= 2.2.4)
   rails (~> 7.0.8, >= 7.0.8.1)
+  redis
   rubocop
   rubocop-rails
   selenium-webdriver
+  sidekiq
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails

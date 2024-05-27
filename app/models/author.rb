@@ -16,6 +16,13 @@ class Author < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+   # Add the expensive_query method here
+   def self.expensive_query
+    Rails.cache.fetch("expensive_query_cache_key", expires_in: 12.hours) do
+      where('popularity_score > ?', 50).order(popularity_score: :desc)
+    end
+  end
+
   private
 
   def set_first_name_and_last_name_from_name

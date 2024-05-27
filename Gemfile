@@ -21,6 +21,11 @@ gem 'will_paginate', '~> 3.3'
 gem 'webpacker', '~> 5.0'
 gem 'pundit'
 gem 'active_model_serializers'
+gem 'sidekiq'
+gem 'redis'
+gem 'rack', '2.2.4'
+gem 'actionpack', '7.0.8.1'
+gem 'i18n', '1.14.5'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
