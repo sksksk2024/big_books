@@ -7,7 +7,7 @@ module.exports = {
     options: {
       cacheDirectory: true,
       presets: [
-        '@babel/preset-env',
+        ['@babel/preset-env', { targets: { node: 'current' } }],
         '@babel/preset-react'
       ]
     }

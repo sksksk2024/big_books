@@ -7,7 +7,7 @@ ruby '3.1.2'
 
 gem 'bootsnap', require: false
 gem 'devise', '~> 4.9', '>= 4.9.4'
-gem 'importmap-rails'
+#gem 'importmap-rails'
 gem 'jbuilder'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.8', '>= 7.0.8.1'
@@ -23,9 +23,10 @@ gem 'pundit'
 gem 'active_model_serializers'
 gem 'sidekiq'
 gem 'redis'
-gem 'rack', '2.2.4'
+gem 'rack'
 gem 'actionpack', '7.0.8.1'
 gem 'i18n', '1.14.5'
+gem 'pg', '~> 1.2'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
